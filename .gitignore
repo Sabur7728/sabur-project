@@ -1,0 +1,6 @@
+.env
+node_modules/
+note.md
+app.md
+docs/
+**/.DS_Store

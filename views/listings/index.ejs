@@ -1,0 +1,244 @@
+<% layout("/layouts/boilerplate") -%>
+
+  <!-- =====================================
+     FILTER SECTION
+===================================== -->
+
+  <div id="filters">
+
+    <div class="filter">
+      <div>
+        <i class="fa-solid fa-fire"></i>
+        <p>Trending</p>
+      </div>
+    </div>
+
+
+    <div class="filter">
+      <i class="fa-solid fa-bed"></i>
+      <p>Room</p>
+    </div>
+
+
+    <div class="filter">
+      <i class="fa-solid fa-mountain-city"></i>
+      <p>Iconic City</p>
+    </div>
+
+
+    <div class="filter">
+      <i class="fa-solid fa-mountain"></i>
+      <p>Mountain</p>
+    </div>
+
+
+    <div class="filter">
+      <i class="fa-brands fa-fort-awesome"></i>
+      <p>Castles</p>
+    </div>
+
+
+    <div class="filter">
+      <i class="fa-solid fa-person-swimming"></i>
+      <p>Amazing Pool</p>
+    </div>
+
+
+    <div class="filter">
+      <i class="fa-solid fa-campground"></i>
+      <p>Camping</p>
+    </div>
+
+
+    <div class="filter">
+      <i class="fa-solid fa-cow"></i>
+      <p>Farm</p>
+    </div>
+
+
+    <div class="filter">
+      <i class="fa-solid fa-snowflake"></i>
+      <p>Arctic</p>
+    </div>
+
+
+    <div class="filter">
+      <i class="fa-solid fa-igloo"></i>
+      <p>Domes</p>
+    </div>
+
+
+    <div class="filter">
+      <i class="fa-solid fa-ship"></i>
+      <p>Boats</p>
+    </div>
+
+
+    <!-- TAX TOGGLE -->
+
+    <div class="tax-toggle">
+
+      <div class="form-check form-switch">
+
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+
+        <label class="form-check-label" for="flexSwitchCheckDefault">
+          Display total after taxes
+        </label>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================
+     LISTINGS
+===================================== -->
+
+  <% if (allListings && allListings.length> 0) { %>
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 mt-4">
+
+      <% for (let listing of allListings) { %>
+
+        <!-- LISTING LINK -->
+
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+
+          <div class="card col listing-card">
+
+            <!-- IMAGE -->
+
+            <img src="<%= listing.image && listing.image.url
+              ? listing.image.url
+              : 'https://www.bristolcameras.co.uk/content/uploads/2021/04/noimage-lrg.jpg'
+            %>" class="card-img-top" alt="<%= listing.title %>"
+              onerror="this.onerror=null; this.src='/images/default.jpg';">
+
+
+            <!-- IMAGE OVERLAY -->
+
+            <div class="card-img-overlay"></div>
+
+
+            <!-- CARD BODY -->
+
+            <div class="card-body">
+
+              <p class="card-text">
+
+                <!-- TITLE -->
+
+                <b>
+                  <%= listing.title %>
+                </b>
+
+                <br>
+
+
+                <!-- PRICE -->
+
+                &#8377;
+
+                <%= listing.price.toLocaleString("en-IN") %>
+
+                  / night
+
+
+                  <!-- TAX -->
+
+                  <i class="tax-info">
+                    &nbsp;&nbsp; +18% GST
+                  </i>
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </a>
+
+        <% } %>
+
+    </div>
+
+
+    <% } else { %>
+
+
+      <!-- =====================================
+       NO RESULTS
+  ====================================== -->
+
+      <div class="no-results">
+
+        <div class="no-results-icon">
+
+          <i class="fa-solid fa-magnifying-glass"></i>
+
+        </div>
+
+
+        <% if (typeof search !=="undefined" && search.trim() !=="" ) { %>
+
+          <h2>
+            No stays found
+          </h2>
+
+          <p>
+            We couldn't find any stays matching
+            <strong>"<%= search %>"</strong>
+          </p>
+
+          <a href="/listings" class="no-results-btn">
+            View all listings
+          </a>
+
+
+          <% } else { %>
+
+            <h2>
+              No listings available
+            </h2>
+
+            <p>
+              There are no listings available right now.
+            </p>
+
+            <a href="/listings" class="no-results-btn">
+              Explore listings
+            </a>
+
+            <% } %>
+
+      </div>
+
+      <% } %>
+
+
+
+        <!-- =====================================
+     TAX SCRIPT
+===================================== -->
+
+        <script>
+          const taxSwitch = document.getElementById("flexSwitchCheckDefault");
+
+          taxSwitch.addEventListener("change", () => {
+
+            const taxInfo = document.getElementsByClassName("tax-info");
+
+            for (let info of taxInfo) {
+
+              if (taxSwitch.checked) {
+                info.style.display = "inline";
+              } else {
+                info.style.display = "none";
+              }
+
+            }
+          });
+        </script>

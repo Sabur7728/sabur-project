@@ -1,0 +1,82 @@
+
+
+/* EDIT.EJS page ka mobile responsive code  */
+
+@media (max-width: 576px) {
+
+    /* Main form container */
+    .col-8.offset-2 {
+        width: 92% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 1.5rem !important;
+    }
+
+    /* Heading */
+    .col-8.offset-2 h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1.2rem;
+    }
+
+    /* Labels */
+    .form-label {
+        font-size: 0.95rem;
+        font-weight: 500;
+    }
+
+    /* Inputs */
+    .form-control {
+        width: 100%;
+        min-height: 44px;
+        font-size: 0.95rem;
+        border-radius: 0.5rem;
+    }
+
+    /* Description */
+    textarea.form-control {
+        min-height: 130px;
+        resize: vertical;
+    }
+
+    /* Original image */
+    .mb-3 img {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 230px;
+        object-fit: cover;
+        border-radius: 0.75rem;
+        display: block;
+    }
+
+    /* Price + Country row */
+    .row .col-md-4,
+    .row .col-md-8 {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* Spacing between price and country */
+    .row .col-md-8 {
+        margin-top: 0.5rem;
+    }
+
+    /* File upload */
+    input[type="file"] {
+        font-size: 0.85rem;
+        padding: 0.65rem;
+    }
+
+    /* Edit button */
+    .add-btn {
+        width: 100%;
+        min-height: 45px;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    /* Validation messages */
+    .invalid-feedback {
+        font-size: 0.8rem;
+    }
+}

@@ -1,0 +1,74 @@
+<% layout("/layouts/boilerplate") -%>
+  <div class="row">
+    <div class="col-8 offset-2 mt-4">
+      <h3>Edit your Listing</h3>
+      <!-- Heading for edit form -->
+
+      <!-- Form to edit listing (uses method-override to convert POST into PUT) -->
+      <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate
+        enctype="multipart/form-data">
+        <div class="mb-3">
+
+          <!-- Input for title, pre-filled with current listing title -->
+          <label for="title" class="form-label">Title</label>
+          <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required />
+          <div class="invalid-feedback"> *required </div>
+        </div>
+
+        <div class="mb-3">
+          <!-- Textarea for description, pre-filled with current listing description -->
+          <label for="description" class="form-label">Description</label>
+
+          <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
+          <div class="invalid-feedback">Description Need to be Short </div>
+        </div>
+
+
+        <div class="mb-3">
+          <p>Orignal Listing Image </p>
+          <img style="width: 300px;" src="<%= orignaleImageUrl %>">
+        </div>
+
+        <div class="mb-3">
+          <!-- Input for image URL, pre-filled with current listing image -->
+          <label for="image" class="form-label">Upload New Image</label>
+
+          <input name="listing[image]" type="file" class="form-control" />
+
+        </div>
+
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <!-- Input for price, pre-filled with current listing price -->
+            <label for="price" class="form-label">Price</label>
+
+            <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required />
+            <div class="invalid-feedback">Price Should be filled</div>
+
+          </div>
+
+          <div class="mb-3 col-md-8">
+            <!-- Input for country, pre-filled with current listing country -->
+            <label for="country" class="form-label">Country</label>
+
+            <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control" required />
+            <div class="invalid-feedback">Country Name Should be Valid </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <!-- Input for location, pre-filled with current listing location -->
+          <label for="location" class="form-label">Location</label>
+
+          <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control" required />
+          <div class="invalid-feedback">Location Should be Valid</div>
+
+        </div>
+
+        <!-- Submit button to update listing -->
+        <button class="btn btn-dark add-btn mt-3 mb-3">Edit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Form Valiation Script Code whihe is linked in the following  -->
+  <script src="/js/script.js"></script>

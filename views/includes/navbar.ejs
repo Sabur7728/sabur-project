@@ -1,0 +1,136 @@
+<style>
+    .search-btn {
+        background-color: #fe424d;
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        padding: 0.5rem 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        white-space: nowrap;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .search-btn:hover {
+        background-color: #fe424d;
+        color: #fff;
+        transform: scale(1.02);
+    }
+
+    .search-btn:active {
+        transform: scale(0.98);
+    }
+
+    .search-btn i {
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .search-inp {
+        width: 300px;
+        height: 44px;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        padding: 0.5rem 1.2rem;
+        font-size: 0.95rem;
+        outline: none;
+        box-shadow: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-inp:focus {
+        border-color: #fe424d;
+        box-shadow: 0 0 0 2px rgba(254, 66, 77, 0.1);
+    }
+
+    .search-inp::placeholder {
+        color: #777;
+        opacity: 1;
+    }
+
+    /* Search form */
+    .navbar form {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        .search-inp {
+            width: 200px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .navbar form {
+            width: 100%;
+            margin: 0.75rem 0;
+        }
+
+        .search-inp {
+            width: 100%;
+        }
+
+        .search-btn {
+            padding: 0.5rem 1rem;
+        }
+    }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="/listings">
+            <i class="fa-regular fa-compass"></i>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+            <!-- LEFT SIDE -->
+            <div class="navbar-nav">
+                <a class="nav-link" href="/listings">Explore</a>
+            </div>
+            <!-- center div  -->
+            <div class="navbar-nav ms-auto">
+                <form class="d-flex" action="/listings" method="GET" role="search">
+                    <input class="form-control search-inp" type="search" name="search" placeholder="Search Destinations"
+                        value="<%= typeof search !== 'undefined' ? search : '' %>">
+
+                    <button class="btn search-btn" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Search
+                    </button>
+                </form>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/listings/new">Airbnb your home</a>
+
+                <% if (!currUser) { %>
+                    <a class="nav-link" href="/signup">
+                        <b>Sign up</b>
+                    </a>
+
+                    <a class="nav-link" href="/login">
+                        <b>Log in</b>
+                    </a>
+                    <% } %>
+
+                        <% if (currUser) { %>
+                            <a class="nav-link" href="/logout">
+                                <b>Logout</b>
+                            </a>
+                            <% } %>
+            </div>
+
+        </div>
+    </div>
+</nav>
