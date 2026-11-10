@@ -19,10 +19,10 @@ const Review = require("../models/review");
 const Listing = require("../models/listing");
 
 const {
-  validateReview,
   isLoggedIn,
   isReviewAuthor,
-} = require("../middleware.js");
+  validateReview
+} = require("../authMiddleware");
 
 const reviewController = require("../controllers/reviews.js");
 const review = require("../models/review");

@@ -12,7 +12,11 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const Listing = require("../models/listing.js");
 
 // IMPORT MIDDLEWARE → Authentication, ownership & validation checks
-const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
+const {
+  isLoggedIn,
+  isOwner,
+  validateListing
+} = require("../authMiddleware");
 
 // =============== IMP ====== CONTROLLERS =========
 // IMPORT CONTROLLER → Contains the actual route logic

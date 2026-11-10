@@ -16,7 +16,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
 
 // IMPORT MIDDLEWARE → Saves the URL user originally wanted to visit
-const { saveRedirectUrl } = require("../middleware.js");
+const { saveRedirectUrl } = require("../authMiddleware.js");
 
 // IMPORT CONTROLLER → Contains the actual user-related logic
 const userController = require("../controllers/users.js");
