@@ -1,3 +1,4 @@
+
 <style>
     .search-btn {
         background-color: #fe424d;
@@ -10,22 +11,12 @@
         justify-content: center;
         gap: 0.4rem;
         white-space: nowrap;
-        transition: background-color 0.2s ease, transform 0.2s ease;
+        transition: 0.2s ease;
     }
 
     .search-btn:hover {
-        background-color: #fe424d;
+        background-color: #e93642;
         color: #fff;
-        transform: scale(1.02);
-    }
-
-    .search-btn:active {
-        transform: scale(0.98);
-    }
-
-    .search-btn i {
-        margin: 0;
-        font-size: 0.95rem;
     }
 
     .search-inp {
@@ -34,10 +25,7 @@
         border: 1px solid #ddd;
         border-radius: 25px;
         padding: 0.5rem 1.2rem;
-        font-size: 0.95rem;
         outline: none;
-        box-shadow: none;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .search-inp:focus {
@@ -45,19 +33,12 @@
         box-shadow: 0 0 0 2px rgba(254, 66, 77, 0.1);
     }
 
-    .search-inp::placeholder {
-        color: #777;
-        opacity: 1;
-    }
-
-    /* Search form */
     .navbar form {
         display: flex;
         align-items: center;
         gap: 0.4rem;
     }
 
-    /* Mobile */
     @media (max-width: 768px) {
         .search-inp {
             width: 200px;
@@ -73,21 +54,35 @@
         .search-inp {
             width: 100%;
         }
-
-        .search-btn {
-            padding: 0.5rem 1rem;
-        }
     }
 </style>
+
+<%
+    const currentUser =
+        typeof currUser !== "undefined" ? currUser : null;
+
+    const currentSearch =
+        typeof search !== "undefined" ? search : "";
+%>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
     <div class="container-fluid">
 
+        <!-- LOGO -->
         <a class="navbar-brand" href="/listings">
             <i class="fa-regular fa-compass"></i>
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+        <!-- TOGGLE BUTTON -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -97,24 +92,36 @@
             <div class="navbar-nav">
                 <a class="nav-link" href="/listings">Explore</a>
             </div>
-            <!-- center div  -->
+
+            <!-- SEARCH -->
             <div class="navbar-nav ms-auto">
-                <form class="d-flex" action="/listings" method="GET" role="search">
-                    <input class="form-control search-inp" type="search" name="search" placeholder="Search Destinations"
-                        value="<%= typeof search !== 'undefined' ? search : '' %>">
+                <form action="/listings" method="GET" role="search">
+
+                    <input
+                        class="form-control search-inp"
+                        type="search"
+                        name="search"
+                        placeholder="Search Destinations"
+                        value="<%= currentSearch %>"
+                    >
 
                     <button class="btn search-btn" type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         Search
                     </button>
+
                 </form>
             </div>
 
             <!-- RIGHT SIDE -->
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/listings/new">Airbnb your home</a>
 
-                <% if (!currUser) { %>
+                <a class="nav-link" href="/listings/new">
+                    Airbnb your home
+                </a>
+
+                <% if (!currentUser) { %>
+
                     <a class="nav-link" href="/signup">
                         <b>Sign up</b>
                     </a>
@@ -122,13 +129,15 @@
                     <a class="nav-link" href="/login">
                         <b>Log in</b>
                     </a>
-                    <% } %>
 
-                        <% if (currUser) { %>
-                            <a class="nav-link" href="/logout">
-                                <b>Logout</b>
-                            </a>
-                            <% } %>
+                <% } else { %>
+
+                    <a class="nav-link" href="/logout">
+                        <b>Logout</b>
+                    </a>
+
+                <% } %>
+
             </div>
 
         </div>
